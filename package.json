@@ -7,12 +7,12 @@
     "server": "cross-env NODE_ENV=development nodemon -r dotenv/config index.js",
     "start": "cross-env NODE_ENV=production node index.js",
     "test": "cross-env NODE_ENV=testing jest",
-    "test:watch": "cross-env NODE_ENV=testing jest --watch",
+    "test:watch": "cross-env NODE_ENV=testing jest --watch"
   },
   "repository": "https://github.com/BW-PTCT-Potluck-Planner/backend.git",
   "author": "hdnye <heatherdnye@gmail.com>",
   "license": "MIT",
-  "private": null,
+  "private": true,
   "dependencies": {
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
