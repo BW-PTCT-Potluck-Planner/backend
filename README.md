@@ -19,10 +19,12 @@
     - cors
     - sqlite3
     - jsonwebtoken
+    - cookie-parser
+    - dotenv
     
    --devDependencies
     - jest
-    - dotenv
+    - cross-env
     - nodemon
     - supertest
 
