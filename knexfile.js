@@ -3,11 +3,10 @@
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: 'pg',
     useNullAsDefault: true,
-    connection: {
-      filename: './data/planner.db3'
-    },
+    connection: 
+       'process.env.DB_URL',
     migrations: {
       directory: './data/migrations',
     },
@@ -32,5 +31,16 @@ module.exports = {
     afterCreate: (conn, done) => {
       conn.run('PRAGMA foreign_keys = ON', done);
     },
+  },
+  production: {
+    client: 'pg',
+    connection: process.env.DB_URL,
+    migrations: {
+      directory: './db/migrations'
+    },
+    seeds: {
+      directory: './db/seeds/production'
+    },
+    useNullAsDefault: true
   },
 }; 
