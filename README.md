@@ -17,18 +17,17 @@
     - express
     - knex
     - cors
+    - pg
     - sqlite3
     - jsonwebtoken
     - cookie-parser
     - dotenv
-    
-   --devDependencies
-    - jest
     - cross-env
+
+   --devDependencies
+    - jest  
     - nodemon
     - supertest
-
--- Deploy to Heroku and connect to F/E
 
 # Unit and Integration Testing
 
@@ -36,6 +35,6 @@
 
 -- Integration tests will be found in their own __test__ folder 
 
-# Update for F/E
+# Routers & Endpoints
 
 -- Will update with Routes & EndPoints 
