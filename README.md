@@ -2,8 +2,6 @@
 
 # API and DBMS for Potluck Planner 
 
--- Checkout a branch (git checkout -b <branch-name>) every time you start work on a new feature.  Make sure the feature + your name is in the title of the branch.  Example: Read-Me-hdnye
-
 -- Open a Pull Request and add PL as a reviewer so they can perform a code review & merge with the master
 
 # Project Set-Up
@@ -13,7 +11,7 @@
 -- Install package manager
 
 -- This project requires the following: 
-   --dependencies
+ ```  --dependencies
     - express
     - knex
     - cors
@@ -27,7 +25,7 @@
    --devDependencies
     - jest  
     - nodemon
-    - supertest
+    - supertest ```
 
 # Unit and Integration Testing
 
