@@ -11,7 +11,7 @@
 -- Install package manager
 
 -- This project requires the following: 
- ```  --dependencies
+ ``` --dependencies
     - express
     - knex
     - cors
@@ -20,9 +20,9 @@
     - jsonwebtoken
     - cookie-parser
     - dotenv
-    - cross-env
+    - cross-env ```
 
-   --devDependencies
+   ```--devDependencies
     - jest  
     - nodemon
     - supertest ```
