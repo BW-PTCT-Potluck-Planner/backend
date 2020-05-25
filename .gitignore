@@ -1,1 +1,10 @@
 
+# yarn Integrity file
+.yarn-integrity 
+
+# Dependency Directories
+node_modules/
+
+# dotenv evnironment variables file
+.env
+.env.test
