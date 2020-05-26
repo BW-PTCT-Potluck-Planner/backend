@@ -1,7 +1,7 @@
 
 exports.seed = async function(knex) {
-  await knex('events').truncate()
-  await knex('users').truncate()
-  await knex('menuItems').truncate()
-  await knex('events_menuItems').truncate()
+  await knex('events').del()
+  await knex('users').del()
+  await knex('menuItems').del()
+  await knex('events_menuItems').del()
 }

@@ -1,11 +1,13 @@
+const dotenv = require('dotenv')
+const results = dotenv.config()
+console.log(results)
+
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: 'pg',
     useNullAsDefault: true,
-    connection: {
-      filename: './data/events.db3',
-    }, 
+    connection: process.env.DATABASE_URL + '?ssl=no-verify', 
     migrations: {
       directory: './data/migrations',
     },
@@ -33,7 +35,7 @@ module.exports = {
   },
   production: {
     client: 'pg',
-    connection: process.env.DB_URL,
+    connection: process.env.DATABASE_URL,
     migrations: {
       directory: './db/migrations'
     },
