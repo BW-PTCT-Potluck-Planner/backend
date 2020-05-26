@@ -1,12 +1,10 @@
-// Update with your config settings.
-
 module.exports = {
 
   development: {
     client: 'pg',
     useNullAsDefault: true,
-    connection: 
-       'process.env.DB_URL',
+    connection:
+      'process.env.DB_URL',
     migrations: {
       directory: './data/migrations',
     },
