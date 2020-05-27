@@ -1,13 +1,11 @@
-const dotenv = require('dotenv')
-const results = dotenv.config()
-console.log(results)
+const dotenv = require('dotenv');
+dotenv.config();
 
 module.exports = {
-
   development: {
     client: 'pg',
     useNullAsDefault: true,
-    connection: process.env.DATABASE_URL + '?ssl=no-verify', 
+    connection: process.env.DATABASE_URL,
     migrations: {
       directory: './data/migrations',
     },
@@ -37,11 +35,11 @@ module.exports = {
     client: 'pg',
     connection: process.env.DATABASE_URL,
     migrations: {
-      directory: './db/migrations'
+      directory: './db/migrations',
     },
     seeds: {
-      directory: './db/seeds/production'
+      directory: './db/seeds/production',
     },
-    useNullAsDefault: true
+    useNullAsDefault: true,
   },
-}; 
+};
