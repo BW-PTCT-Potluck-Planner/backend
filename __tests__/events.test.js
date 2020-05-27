@@ -2,6 +2,7 @@ const request = require('supertest')
 const server = require('../server')
 const db = require('../data/config')
 const Events = require('../events/eventsModel')
+
 beforeEach(async () => {
     await db.seed.run
 })
