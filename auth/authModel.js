@@ -10,15 +10,17 @@ function find() {
     return db('users')
 }
 
-function findBy(id) {
+function findBy(query) {
     return db('users')
-        .select('id', 'username')
-        .where({ id })
+        .where(query)
         .first()
 }
 
 async function insert(user) {
     user.password = await bcrypt.hash(user.password, 13)
-    const [id] = await db('users').insert(user)
-    return findBy(id)
+    console.log()
+    await db('users').insert(user);
+    const { password, ...data } = await findBy({ username: user.username })
+    return data
 }
+

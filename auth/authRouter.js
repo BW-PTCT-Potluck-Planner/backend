@@ -1,7 +1,7 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
 const Users = require('../auth/authModel')
-
+const bcrypt = require('bcryptjs')
 const router = express.Router()
 
 
@@ -23,7 +23,8 @@ router.post('/register', async (req, res, next) => {
                   message: 'Username taken'
               })
             }
-          res.status(201).json(await Users.insert(req.body))  
+          await Users.insert(req.body)
+          res.redirect(307, './login')
 
     } catch(err) {
         next(err)
@@ -40,6 +41,7 @@ router.post('/login', async (req, res, next) => {
         if (!user) {
            return res.status(401).json(authErr)
         }
+       
         const pswdValid = bcrypt.compareSync(password, user.password)
         if (!pswdValid) {
             return res.status(401).json({
@@ -50,9 +52,11 @@ router.post('/login', async (req, res, next) => {
             subject: user.id,
             username: user.username
         }
-        res.cookie('token', jwt.sign(tokenPayload, process.env.COOKIE_SECRET))
+        const token = jwt.sign(tokenPayload, process.env.COOKIE_SECRET)
+        res.cookie('token', token) 
         res.json({
-            message: `Welcome ${user.username}!`
+            message: `Welcome ${user.username}!`,
+            token
         })
     } catch (err) {
         next(err)
