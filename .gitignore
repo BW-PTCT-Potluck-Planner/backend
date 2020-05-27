@@ -1,6 +1,9 @@
 
 # yarn Integrity file
-.yarn-integrity 
+.yarn-integrity
+
+# yarn errors
+yarn.error.log
 
 # Dependency Directories
 node_modules/

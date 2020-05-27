@@ -124,3 +124,10 @@
 #### 500 (Internal Server Error)
 
 `{ message: 'Unable to complete request' }`
+
+## .env
+
+```sh
+COOKIE_SECRET='keep it secret, keep it safe'
+DATABASE_URL='postgres://postgres:password@localhost:5432/bw'
+```
