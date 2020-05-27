@@ -1,6 +1,6 @@
 const dotenv = require('dotenv')
-const results = dotenv.config()
-console.log(results)
+dotenv.config()
+
 
 module.exports = {
 
