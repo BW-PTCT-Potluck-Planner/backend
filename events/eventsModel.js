@@ -4,6 +4,7 @@ module.exports = {
     find,
     findBy,
     add,
+    remove
 }
 
 function find() {
@@ -22,4 +23,11 @@ async function add(data) {
     return db('events')
         .where({ id })
         .first()
+}
+
+function remove(id) {
+    return db('events')
+        .where({ id })
+        .delete()
+
 }

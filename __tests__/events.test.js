@@ -2,8 +2,13 @@ const request = require('supertest')
 const server = require('../server')
 const db = require('../data/config')
 const Events = require('../events/eventsModel')
+
 beforeEach(async () => {
     await db.seed.run
+})
+
+afterAll(async () => {
+    await db.destroy()
 })
 
 describe('app working', () => {
@@ -17,7 +22,7 @@ describe('app working', () => {
         const res = await request(server).get('/events/:id')
         expect(res.status).toBe(200)
         expect(res.type).toBe('application/json')
-     /  expect(res.body[1]).toBe('Amy\'s Birthday')
+        expect(res.body[1]).toBe('Amy\'s Birthday')
     })
     it('adds event', async () => {
         const res = await request(server).get('/events')
@@ -29,6 +34,14 @@ describe('app working', () => {
         })
         expect(res.status).toBe(200)
         const data = await db('events')
-       // expect(data).toBeVisible()
+        expect(data).toBeVisible()
     }) 
+    it('deletes an event', async () => {
+        const res = await request(server).get('/events')
+        await Events.remove(3)
+        expect(res.status).toBe(200)
+        const data = await db('events')
+        expect(data).toHaveLength(13)
+    })
+   
 })

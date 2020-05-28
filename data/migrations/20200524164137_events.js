@@ -6,7 +6,7 @@ exports.up = async function (knex) {
     table.string('name').notNullable();
     table.string('description', 256).notNullable();
     table.string('location').notNullable();
-    table.string('when').notNullable;
+    table.string('when').notNullable();
   });
   //create menu items table
   await knex.schema.createTable('menuItems', (table) => {
