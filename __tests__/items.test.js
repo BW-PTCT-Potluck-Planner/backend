@@ -21,6 +21,6 @@ describe('menuItems table returning items', () => {
         const res = await request(server).get('/menuItems')
         const newItem = await db('menuItems').insert( {name: 'something', events_id: 2} )
         expect(res.statusCode).toBe(200)
-       // expect(newItem).toBeVisible()
+        expect(newItem).toBeVisible()
     })
 })
