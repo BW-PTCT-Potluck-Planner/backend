@@ -11,18 +11,19 @@ afterAll(async () => {
     await db.destroy()
 })
 
+
 describe('app working', () => {
     it('gets db info', async () => {
         const res = await request(server).get('/events')
         expect(res.status).toBe(200)
         expect(res.type).toBe('application/json')
-        expect(res.body[1]).toBe('Amy\'s Birthday')
+        expect(res.body[0]).toBe('Amy\'s Birthday')
     })
     it('gets event by id', async () => {
         const res = await request(server).get('/events/:id')
         expect(res.status).toBe(200)
         expect(res.type).toBe('application/json')
-        expect(res.body[1]).toBe('Amy\'s Birthday')
+        expect(res.body[0]).toBe('Amy\'s Birthday')
     })
     it('adds event', async () => {
         const res = await request(server).get('/events')
@@ -34,14 +35,22 @@ describe('app working', () => {
         })
         expect(res.status).toBe(200)
         const data = await db('events')
-        expect(data).toBeVisible()
+        expect(data).toBe(res.body)
     }) 
     it('deletes an event', async () => {
         const res = await request(server).get('/events')
         await Events.remove(3)
         expect(res.status).toBe(200)
-        const data = await db('events')
-        expect(data).toHaveLength(13)
     })
-   
+   it('updates an event', async () => {
+        const res = await request(server).get('/events')
+        const newLocation = { location: 'Willie\'s Joint' }
+        await Events.update(0, newLocation)
+        expect(res.body[0]).toEqual({
+            name: 'Amy\'s Birthday',
+            description: 'Come celebrate as Amy turns 21',
+            location: 'Willie\'s Joint',
+            when: 'Jan 14 at 2.30 pm' 
+        })
+   })
 })

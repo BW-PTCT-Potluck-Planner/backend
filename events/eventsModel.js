@@ -4,7 +4,8 @@ module.exports = {
     find,
     findBy,
     add,
-    remove
+    remove, 
+    update
 }
 
 function find() {
@@ -30,4 +31,12 @@ function remove(id) {
         .where({ id })
         .delete()
 
+}
+async function update(changes) {
+    const [id] = await db('events')
+        .update(changes, 'id')
+    return db('events')
+         .where({ id })
+         .first()
+       
 }
