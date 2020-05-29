@@ -5,13 +5,7 @@ const Auth = require('../auth/authModel')
 const jwt = require('jsonwebtoken')
 
 
-beforeEach(async () => {
-    await db.seed.run
-})
 
-afterAll(async () => {
-    await db.destroy()
-})
 
 const newUser = {
     username: 'Test',
@@ -20,11 +14,17 @@ const newUser = {
 
 
 describe('auth routes authenticate user', () => {
+    beforeAll(async () => {
+        await db.seed.run()
+    })
+    
+    afterAll(async () => {
+        await db.destroy()
+    })
+
     it('registers user', async () => {
         const res = await request(server).post('/users/register').send(newUser)
-        expect(res.status).toBe(409)
-        expect(res.type).toBe('application/json')
-        expect(res.body.username).toBe(newUser.username)
+        expect(res.status).toBe(307)
     })
     
     it('logs in user', async () => {
@@ -32,7 +32,7 @@ describe('auth routes authenticate user', () => {
         expect(res.status).toBe(200)
         expect(res.headers['set-cookie']).toBeTruthy()
 
-        const token = res.body.data
+        const token = res.body.token
         jwt.verify(token, process.env.COOKIE_SECRET, (err, decodedPayload) =>{
             expect(err).toBeNull()
             expect(decodedPayload.username).toBe(newUser.username)
