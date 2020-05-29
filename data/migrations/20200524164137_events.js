@@ -4,7 +4,7 @@ exports.up = async function (knex) {
     //primary table with events
     table.string('id').primary().defaultTo(knex.raw('uuid_generate_v4()'));
     table.string('name').notNullable();
-    table.string('description', 256).notNullable();
+    table.string('description', 4096).notNullable();
     table.string('location').notNullable();
     table.string('when').notNullable();
   });
