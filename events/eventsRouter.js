@@ -1,9 +1,9 @@
 const express = require('express')
 const Events = require('./eventsModel')
-
+const validateUser = require('./validateUser')
 const router = express.Router()
 
-router.get('/', async (req, res, next) => {
+router.get('/', validateUser(), async (req, res, next) => {
     try {
         res.json(await Events.find())
     } catch(err) {
@@ -11,7 +11,7 @@ router.get('/', async (req, res, next) => {
     }
 })
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', validateUser(), async (req, res, next) => {
     try{
         const { id } = req.params
         res.json( await Events.findBy(id))
